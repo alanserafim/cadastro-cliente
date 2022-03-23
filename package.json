@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "sha1": "^1.1.1"
+  }
+}
