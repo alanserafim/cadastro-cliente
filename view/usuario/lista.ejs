@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Usuário</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= mensagem %></h1>
+    <ul>
+      <% docs.forEach(function(usuario){ %>
+        <li>
+            <%= usuario.nome %>
+            <input type="button" onclick="location.href='/delete/usuario/<%= usuario.id %>'" 
+             value="delete" />
+            <input type="button" onclick="location.href='/edit/usuario/<%= usuario.id %>'" 
+             value="editar" />
+        </li>
+      <% }) %>
+    </ul>
+    <br>
+    <br>
+    <input type="button" onclick="location.href='/cadastro'"  value="Novo usuário" />
+
+  </body>
+</html>
