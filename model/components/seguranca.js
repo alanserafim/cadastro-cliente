@@ -7,4 +7,9 @@ function ocultarsenha(senha){
     return(hash);
 }
 
-module.exports = {ocultarsenha};
+function autenticar(req, res, next){
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login?fail=true')
+}
+
+module.exports = {ocultarsenha, autenticar};

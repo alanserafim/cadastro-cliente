@@ -1,0 +1,16 @@
+body{
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(234,249,249,0.67) 0.1%, rgba(239,249,251,0.63) 90.1% );
+    font-size: 18px;
+}
+
+h1{
+    font-size: 1.5em;
+}
+
+label{
+    padding-top: 1em;
+}
+
+input{
+    height: 2em;
+}
