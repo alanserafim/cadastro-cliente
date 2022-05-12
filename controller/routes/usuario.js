@@ -66,7 +66,7 @@ module.exports = function (app){
         }
     });
 
-    //GET do botão editar da página EditUsuario.ejs
+    //GET do botão alterar da página EditUsuario.ejs
     app.get('/edit/usuario/:id', seguranca.autenticar, async (req, res, next) => {
         try{
             var id = req.params.id;
