@@ -8,9 +8,20 @@ h1{
 }
 
 label{
-    padding-top: 1em;
+    padding: 1em 0 1em;
 }
 
 input{
-    height: 2em;
+    margin-top: .5em;
+    padding: .5em;
+}
+
+input[type=submit]{
+    width: 190px;
+    margin-left: 3.6em;
+    margin-top: .5em;
+}
+
+li{
+    padding-top: .4em;
 }
