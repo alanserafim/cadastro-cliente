@@ -1,0 +1,1 @@
+npm install express --save nodemon -g sha1 mysql2 body-parser ejs consign passport express-session

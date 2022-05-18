@@ -7,6 +7,10 @@ h1{
     font-size: 1.5em;
 }
 
+h2{
+    font-size: 1em;
+}
+
 label{
     padding: 1em 0 1em;
 }
@@ -22,6 +26,25 @@ input[type=submit]{
     margin-top: .5em;
 }
 
-li{
-    padding-top: .4em;
+ul {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    
+}
+
+li {
+    border: 1px solid black;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    height: 2em;
+    padding: 1em
+}
+
+li  input{
+    width: 150px;
+    margin-left: 1em;
+
 }

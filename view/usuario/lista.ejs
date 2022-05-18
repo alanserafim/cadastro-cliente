@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../css/cadastro.css">
     <title>Lista de Usuário</title>
   </head>
   <body>
@@ -8,11 +9,13 @@
     <ul>
       <% docs.forEach(function(usuario){ %>
         <li>
-            <%= usuario.nome %>
-            <input type="button" onclick="location.href='/delete/usuario/<%= usuario.id %>'" 
-             value="delete" />
-            <input type="button" onclick="location.href='/edit/usuario/<%= usuario.id %>'" 
-             value="editar" />
+            <h2><%= usuario.nome %></h2>
+            <div class="nome__botoes">
+              <input type="button" onclick="location.href='/delete/usuario/<%= usuario.id %>'" 
+              value="delete" />
+              <input type="button" onclick="location.href='/edit/usuario/<%= usuario.id %>'" 
+              value="editar" />
+            </div>
         </li>
       <% }) %>
     </ul>

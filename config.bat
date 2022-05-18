@@ -2,12 +2,14 @@
 
 npm install express --save
 npm install nodemon -g
-npm install sha1
+npm install 
 npm install mysql2
 npm install body-parser
 npm install ejs
 npm install consign
-npm install passport express-session
+npm install passport
+npm install passport-local
+npm install express-session
 
 SQL
 
@@ -18,15 +20,16 @@ SQL
 *nome do login: admin
 *senha para login: 12345
 
-Script SQL
+***********Script SQL *************
 
 create database webii;
 
 create table webii.usuario(
     id int auto_increment primary key,
     nome varchar(255) not null, 
-    senha varchar(255)
+    senha varchar(255) not null
 );
 
 insert into webii.usuario values(1,'admin', '8cb2237d0679ca88db6464eac60da96345513964');
 
+*********************************
