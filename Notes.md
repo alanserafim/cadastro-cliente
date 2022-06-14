@@ -220,7 +220,90 @@
     ### Sintaxe
 
     ### Aplicação
+        
+        //===========> criptografando a senha com a biblioteca de hash sha1
+            
+            function ocultarsenha(senha){
+                var sha1 = require('sha1');
+                console.log(senha);
+                var hash = sha1(senha);
+                console.log(hash);
+                return(hash);
+            }
 
+            module.exports = {ocultarsenha};
+
+        
+        //===========> Aplicando autenticação de usuário com a blibioteca passport
+
+        const LocalStrategy = require('passport-local').Strategy;
+        const seguranca = require("./seguranca");
+        const usuarioBanco = require("../repositories/usuarioDB");
+
+        module.exports = function(passport){
+            passport.serializeUser((user, done) => {
+                done(null, user.id);
+            });
+
+            passport.deserializeUser(async (id, done) =>{
+                try {
+                    const usuario = await usuarioBanco.getUsuarioId(id);
+                    done(null, usuario);
+                } catch (err) {
+                    done(err, null);
+                }
+            });
+
+            passport.use(new LocalStrategy({
+                    usernameField: 'nome',
+                    passwordField: 'senha'
+                    },
+
+                async (nome, senha, done) => {
+                    try {
+                        const usuario = await usuarioBanco.login(nome, senha);
+                        if(usuario != null && usuario){
+                            return done(null, usuario);
+                        } else {
+                            return done (null, false);
+                        }
+                    } catch (err) {
+                        done(err, false)
+                    }
+                }
+            ));
+        };
+
+        //====> modularizando a estratégia de autenticação
+
+        function autenticar(req, res, next){
+            if(req.isAuthenticated()) return next();
+            res.redirect('/login?fail=true')
+        }
+
+        module.exports = {autenticar};  
+
+        // ====> configuração da session e login no arquivo base
+
+        const passport = require('passport');
+        const session = require('express-session');
+        require('./model/components/autenticacao')(passport);
+
+        app.use(session({
+            secret: '12345678', // configure um segredo seu aqui
+            resave: false, //salvar cada requisição
+            saveUninitialized: false, /// sessoês anônimas
+            cookie: { maxAge: 30 * 60 * 1000} //30 min
+        }))
+
+        app.use(passport.initialize());
+        app.use(passport.session());
+
+        //Validação de login do usuário -> a URL listada abaixo está como atributo do form da página de Login
+        app.post('/login/executar', passport.authenticate('local', {
+            successRedirect: '/lista/usuario',
+            failureRedirect: '/login/?fail=true'
+        }));          
 
 ## Funções assíncronas
 
